@@ -566,8 +566,13 @@ class OptimizedImages extends Component
                 $asset,
                 $transform
             );
+            // If the original image is an SVG, don't add a variant for it
+            $path = parse_url($url, PHP_URL_PATH);
+            $extension = pathinfo($path, PATHINFO_EXTENSION);
+            if ($extension !== 'svg') {
+                $model->optimizedWebPImageUrls[$transform->width] = $webPUrl;
+            }
             //ImageOptimize::$plugin->transformMethod->prefetchRemoteFile($webPUrl);
-            $model->optimizedWebPImageUrls[$transform->width] = $webPUrl;
             $model->focalPoint = $asset->focalPoint;
             $model->originalImageWidth = $asset->width;
             $model->originalImageHeight = $asset->height;
