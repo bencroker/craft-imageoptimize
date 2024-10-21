@@ -1,6 +1,6 @@
 # ImageOptimize Changelog
 
-## 4.0.10 - UNRELEASED
+## 4.0.10 - 2024.10.21
 ## Changed
 * Allow for empty `alt` tags for screen readers as per WCAG ([411](https://github.com/nystudio107/craft-imageoptimize/issues/411))
 
