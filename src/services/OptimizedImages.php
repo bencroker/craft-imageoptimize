@@ -297,8 +297,11 @@ class OptimizedImages extends Component
                 // Update it for all of the sites
                 foreach ($siteSettingsRecords as $siteSettingsRecord) {
                     // Set the field values
-                    if ($siteSettingsRecord && $fieldLayout) {
-                        $content = Json::decodeIfJson($siteSettingsRecord->content) ?: [];
+                    if ($fieldLayout) {
+                        $content = Json::decodeIfJson($siteSettingsRecord->content);
+                        if (!is_array($content)) {
+                            $content = [];
+                        }
                         $content[$field->layoutElement->uid] = $field->serializeValue($asset->getFieldValue($field->handle), $asset);
                         $siteSettingsRecord->content = $content;
                         // Save the site settings record
@@ -573,8 +576,13 @@ class OptimizedImages extends Component
                 $asset,
                 $transform
             );
+            // If the original image is an SVG, don't add a variant for it
+            $path = parse_url($url, PHP_URL_PATH);
+            $extension = pathinfo($path, PATHINFO_EXTENSION);
+            if ($extension !== 'svg') {
+                $model->optimizedWebPImageUrls[$transform->width] = $webPUrl;
+            }
             //ImageOptimize::$plugin->transformMethod->prefetchRemoteFile($webPUrl);
-            $model->optimizedWebPImageUrls[$transform->width] = $webPUrl;
             $model->focalPoint = $asset->focalPoint;
             $model->originalImageWidth = $asset->width;
             $model->originalImageHeight = $asset->height;

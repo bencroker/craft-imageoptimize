@@ -1,5 +1,14 @@
 # ImageOptimize Changelog
 
+## 5.0.3 - 2024.10.21
+## Changed
+* Allow for empty `alt` tags for screen readers as per WCAG ([411](https://github.com/nystudio107/craft-imageoptimize/issues/411))
+
+### Fixed
+* Don't add image variants if no variant creator for them exists ([#410](https://github.com/nystudio107/craft-imageoptimize/issues/410))
+* Fix a visual issue with the sizing arrows for Optimized Image fields
+* Don't apply background placeholder CSS to images that may be transparent like SVGs or GIFs ([#410](https://github.com/nystudio107/craft-imageoptimize/issues/410))
+
 ## 5.0.2 - 2024.06.19
 ### Fixed
 * Fixed an issue where `srcsetMaxWidth()` could return incorrect results ([#407](https://github.com/nystudio107/craft-imageoptimize/issues/407))
