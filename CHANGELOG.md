@@ -1,5 +1,9 @@
 # ImageOptimize Changelog
 
+## 1.6.57 - UNRELEASED
+## Fixed
+* Don't try to apply filters to assets that are seemingly corrupt, and have a `0` width or `0` height ([#383](https://github.com/nystudio107/craft-imageoptimize/issues/383))
+
 ## 1.6.56 - 2024.10.21
 ## Changed
 * Allow for empty `alt` tags for screen readers as per WCAG ([411](https://github.com/nystudio107/craft-imageoptimize/issues/411))
